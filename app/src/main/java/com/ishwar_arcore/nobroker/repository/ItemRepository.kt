@@ -2,6 +2,7 @@ package com.ishwar_arcore.nobroker.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.ishwar_arcore.nobroker.data.model.response.ApiResponse
 import com.ishwar_arcore.nobroker.data.model.response.ResponseItem
 import com.ishwar_arcore.nobroker.data.remote.ApiClient
 import com.ishwar_arcore.nobroker.data.remote.RetrofitClient
@@ -18,24 +19,25 @@ class ItemRepository {
     /**
      * Calling the API response and enqueuing the process
      * **/
-    suspend fun newsByRegion(region: String) {
-        val apiClient = RetrofitClient.getRetrofitInstance().create(ApiClient::class.java)
-        apiClient.getItemList().enqueue(object :
-            retrofit2.Callback<com.ishwar_arcore.nobroker.data.model.response.Response> {
+    fun fetchListFromServer() {
+        val apiClient = RetrofitClient.getRetrofitInstance()?.create(ApiClient::class.java)
+        apiClient?.getItemList()?.enqueue(object :
+            retrofit2.Callback<List<ResponseItem>> {
             override fun onResponse(
-                call: Call<com.ishwar_arcore.nobroker.data.model.response.Response>,
-                response: Response<com.ishwar_arcore.nobroker.data.model.response.Response>
+                call: Call<List<ResponseItem>>,
+                apiResponse: Response<List<ResponseItem>>
             ) {
-                if (response.isSuccessful) {
-                    itemList.postValue(response.body()?.response)
+                if (apiResponse.isSuccessful) {
+                    itemList.postValue(apiResponse.body())
                 }
             }
 
             override fun onFailure(
-                call: Call<com.ishwar_arcore.nobroker.data.model.response.Response>,
+                call: Call<List<ResponseItem>>,
                 t: Throwable
             ) {
-                itemList.postValue(null)
+                Log.d("tag", "onFailure")
+//                itemList.postValue(null)
             }
 
         })

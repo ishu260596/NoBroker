@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/_10sdp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,22 +25,23 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_toRightOf="@id/ivImage"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/tvSubTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
             android:layout_below="@id/tvTitle"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_toRightOf="@id/ivImage"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/sub_title"
             android:textColor="@color/black"
-            android:textSize="@dimen/_18sdp" />
+            android:textSize="@dimen/_15sdp" />
 
     </RelativeLayout>
 

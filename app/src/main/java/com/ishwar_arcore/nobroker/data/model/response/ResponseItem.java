@@ -2,26 +2,28 @@ package com.ishwar_arcore.nobroker.data.model.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseItem{
+import java.io.Serializable;
 
-	@SerializedName("image")
-	private String image;
+public class ResponseItem implements Serializable {
 
-	@SerializedName("subTitle")
-	private String subTitle;
+    @SerializedName("image")
+    private String image;
 
-	@SerializedName("title")
-	private String title;
+    @SerializedName("subTitle")
+    private String subTitle;
 
-	public String getImage(){
-		return image;
-	}
+    @SerializedName("title")
+    private String title;
 
-	public String getSubTitle(){
-		return subTitle;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public String getTitle(){
-		return title;
-	}
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

@@ -7,9 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
     private val instance: Retrofit? = null
 
-    private val httpLoggingInterceptor =
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-
 /**
  * This class will let only one instance will be there.
  * This method will return the retrofit object if it ->
@@ -17,10 +14,10 @@ object RetrofitClient {
  * object which instantiated in first go.
  * **/
 
-    fun getRetrofitInstance(): Retrofit {
+    fun getRetrofitInstance(): Retrofit? {
         return RetrofitClient.instance
             ?: Retrofit.Builder()
-                .baseUrl("https://api.jsonbin.io/")
+                .baseUrl("https://api.jsonbin.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }

@@ -11,13 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoBroker">
         <activity android:name=".ui.views.ItemDescriptionActivity" />
-        <activity android:name=".ui.views.ItemListActivity" />
-        <activity android:name=".ui.views.SplashScreenActivity">
+        <activity android:name=".ui.views.ItemListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.views.SplashScreenActivity">
+
         </activity>
     </application>
 

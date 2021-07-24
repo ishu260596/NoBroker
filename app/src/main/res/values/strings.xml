@@ -3,4 +3,7 @@
     <string name="Search_Title">Search Title or Description</string>
     <string name="title">Title</string>
     <string name="sub_title">Sub Title</string>
+    <string name="item_list">Item List</string>
+    <string name="item_detail">Item Detail</string>
+    <string name="title_1">Title 1</string>
 </resources>

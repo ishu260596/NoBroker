@@ -3,7 +3,7 @@ package com.ishwar_arcore.nobroker.data.model.response;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class Response{
+public class ApiResponse {
 
 	@SerializedName("Response")
 	private List<ResponseItem> response;
