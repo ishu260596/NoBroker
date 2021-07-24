@@ -13,6 +13,8 @@ import com.ishwar_arcore.nobroker.repository.ItemRepository
 import com.ishwar_arcore.nobroker.ui.adapter.ItemAdapter
 import com.ishwar_arcore.nobroker.ui.adapter.ItemClickListener
 import com.ishwar_arcore.nobroker.utils.MyApplication
+import com.ishwar_arcore.nobroker.utils.NETWORK_CALL
+import com.ishwar_arcore.nobroker.utils.PreferenceHelper
 import com.ishwar_arcore.nobroker.viewmodel.ItemViewModel
 import com.ishwar_arcore.nobroker.viewmodel.ViewModelFactory
 
@@ -30,10 +32,17 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener {
         mBinding = ActivityItemListBinding.inflate(layoutInflater)
         setContentView(mBinding.root!!)
         initViews()
-        setRecyclerView()
+
+        itemViewModel.getItemListFromLocal().observe(this, Observer {
+            itemList.clear()
+            itemList.addAll(it)
+            itemAdapter.notifyDataSetChanged()
+        })
     }
 
     private fun initViews() {
+        PreferenceHelper.getSharedPreferences(this)
+
         val myApp = application as MyApplication
         itemDAO = myApp.daoObj
         itemRepo = myApp.itemRepository
@@ -47,16 +56,11 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener {
             adapter = itemAdapter
             layoutManager = LinearLayoutManager(this@ItemListActivity)
         }
-        itemViewModel.fetchItemFromServer()
 
-    }
-
-    private fun setRecyclerView() {
-        itemViewModel.getItemListFromLocal()
-        itemViewModel.getItemList().observe(this, Observer {
-            itemList.addAll(it)
-            itemAdapter.notifyDataSetChanged()
-        })
+        if (PreferenceHelper.getBooleanFromPreference(NETWORK_CALL)) {
+            itemViewModel.fetchItemFromServer()
+            PreferenceHelper.writeBooleanToPreference(NETWORK_CALL, false)
+        }
     }
 
     override fun onItemClick(model: ItemEntity) {

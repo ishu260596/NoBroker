@@ -9,9 +9,13 @@ import java.io.Serializable
 
 @Entity(tableName = TABLE_NAME)
 data class ItemEntity(
-    @PrimaryKey()
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
+    var id: Int?,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "image") var image: String,
     @ColumnInfo(name = "subtitle") var subtitle: String,
 ) : Serializable
+
 

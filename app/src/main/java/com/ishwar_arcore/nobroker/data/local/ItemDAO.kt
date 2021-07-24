@@ -13,5 +13,11 @@ interface ItemDAO {
     suspend fun insertItem(itemEntity: ItemEntity)
 
     @Query("SELECT * FROM item_table")
-    suspend fun getItemFromLocal(): List<ItemEntity>
+    fun getItemFromLocal(): LiveData<List<ItemEntity>>
+
+    @Query(
+        "SELECT * FROM data_table WHERE title LIKE '%' " +
+                "|| :search || '%' OR subTitle LIKE '%' || :search || '%'"
+    )
+    fun getItemBySearch(): LiveData<List<ItemEntity>>
 }
