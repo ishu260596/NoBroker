@@ -22,6 +22,10 @@ class ItemRepository(private val itemDAO: ItemDAO) {
         return itemDAO.getItemFromLocal()
     }
 
+    fun getItemBySearch(newText: String?): LiveData<List<ItemEntity>> {
+        return itemDAO.getItemBySearch(newText!!)
+    }
+
     /**
      * Calling the API response and enqueuing the process
      * **/
@@ -42,52 +46,9 @@ class ItemRepository(private val itemDAO: ItemDAO) {
              *
              * **/
             itemDAO.insertItem(itemEntity)
-
         }
     }
-}
-
-
-/** val apiClient = RetrofitClient.getRetrofitInstance()?.create(ApiClient::class.java)
-apiClient?.getItemList()?.enqueue(object :
-retrofit2.Callback<List<ResponseItem>> {
-override fun onResponse(
-call: Call<List<ResponseItem>>,
-apiResponse: Response<List<ResponseItem>>
-) {
-
-if (apiResponse.isSuccessful) {
-val list: List<ResponseItem>? =
-apiResponse.body()
-
-for (i in 0 until list?.size!!) {
-val responseItem = list[i]
-val itemEntity = ItemEntity(
-i + 1,
-responseItem.title,
-responseItem.image,
-responseItem.subTitle
-)
-/**
- * saving the item list in roomDatabase
- *
- * **/
-CoroutineScope(Dispatchers.IO).launch {
-itemDAO.insertItem(itemEntity)
-}
-}
-
-PreferenceHelper.writeBooleanToPreference(NETWORK_CALL, true)
 
 }
 
-}
 
-override fun onFailure(
-call: Call<List<ResponseItem>>,
-t: Throwable
-) {
-Log.d("tag", "onFailure")
-}
-
-})**/

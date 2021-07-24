@@ -18,31 +18,33 @@
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:layout_margin="@dimen/_5sdp"
-            android:scaleType="center"
-            android:src="@drawable/ic_image" />
+            android:background="@color/colorGrey"
+            android:scaleType="center" />
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_toRightOf="@id/ivImage"
+            android:background="@color/colorGrey"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/title"
             android:textColor="@color/black"
             android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/tvSubTitle"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_15sdp"
             android:layout_below="@id/tvTitle"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_toRightOf="@id/ivImage"
+            android:background="@color/colorGrey"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/sub_title"
+            android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
     </RelativeLayout>

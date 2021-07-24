@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ishwar_arcore.nobroker.R
 import com.ishwar_arcore.nobroker.data.local.ItemEntity
+import kotlin.collections.ArrayList
 
 class ItemAdapter(
-    private val itemList: List<ItemEntity>,
+    private val itemList: ArrayList<ItemEntity>,
     private val listener: ItemClickListener
 ) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {

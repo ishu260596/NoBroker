@@ -6,42 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".ui.views.ItemListActivity">
 
-
     <TextView
         android:id="@+id/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:text="@string/item_list"
         android:fontFamily="sans-serif-medium"
+        android:text="@string/item_list"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/svItemList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/search_view_bg"
-        android:iconifiedByDefault="false"
         android:fontFamily="sans-serif-medium"
+        android:iconifiedByDefault="false"
         android:queryHint="@string/Search_Title"
+        android:textCursorDrawable="@null"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TextView" />
+        app:layout_constraintTop_toBottomOf="@id/TextView"
+        app:queryBackground="@null"
+        app:queryHint="@string/Search_Title" />
 
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:duration="5000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/svItemList"
+        app:layout_constraintStart_toStartOf="@+id/svItemList"
+        app:layout_constraintTop_toBottomOf="@id/svItemList">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+
+            <include layout="@layout/item_shimmer_layout" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvItemList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_15sdp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/svItemList"
         app:layout_constraintStart_toStartOf="@+id/svItemList"

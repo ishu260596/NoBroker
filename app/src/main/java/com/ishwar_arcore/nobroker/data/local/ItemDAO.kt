@@ -15,9 +15,6 @@ interface ItemDAO {
     @Query("SELECT * FROM item_table")
     fun getItemFromLocal(): LiveData<List<ItemEntity>>
 
-    @Query(
-        "SELECT * FROM data_table WHERE title LIKE '%' " +
-                "|| :search || '%' OR subTitle LIKE '%' || :search || '%'"
-    )
-    fun getItemBySearch(): LiveData<List<ItemEntity>>
+    @Query("SELECT * FROM item_table WHERE title LIKE '%' || :search || '%' OR subtitle LIKE '%' || :search || '%'")
+    fun getItemBySearch(search: String): LiveData<List<ItemEntity>>
 }

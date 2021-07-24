@@ -21,7 +21,10 @@ class ItemViewModel(private val itemRepository: ItemRepository) : ViewModel() {
         CoroutineScope(Dispatchers.IO).launch {
             itemRepository.fetchListFromServer()
         }
+    }
 
+    fun getItemBySearch(newText: String?): LiveData<List<ItemEntity>> {
+        return itemRepository.getItemBySearch(newText)
     }
 
 }
