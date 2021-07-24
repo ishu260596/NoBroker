@@ -1,7 +1,6 @@
 package com.ishwar_arcore.nobroker.data.remote
 
-import com.ishwar_arcore.nobroker.data.model.response.ApiResponse
-import com.ishwar_arcore.nobroker.data.model.response.ResponseItem
+import com.ishwar_arcore.nobroker.data.model.ResponseItem
 import retrofit2.Call
 import retrofit2.http.GET
 

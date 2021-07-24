@@ -1,17 +1,18 @@
 package com.ishwar_arcore.nobroker.ui.views
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.ishwar_arcore.nobroker.R
-import com.ishwar_arcore.nobroker.data.model.response.ResponseItem
+import com.ishwar_arcore.nobroker.data.local.ItemEntity
+import com.ishwar_arcore.nobroker.data.model.ResponseItem
 import com.ishwar_arcore.nobroker.databinding.ActivityItemDescriptionBinding
-import com.ishwar_arcore.nobroker.databinding.ActivityItemListBinding
 
 class ItemDescriptionActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityItemDescriptionBinding
 
-    private var model: ResponseItem? = null
+    private var model: ItemEntity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityItemDescriptionBinding.inflate(layoutInflater)
@@ -21,15 +22,19 @@ class ItemDescriptionActivity : AppCompatActivity() {
 
     private fun initViews() {
         if (intent != null && intent.extras != null) {
-            model = intent.getSerializableExtra("model") as ResponseItem?
+            model = intent.getSerializableExtra("model") as ItemEntity?
         }
         model?.let {
             mBinding.tvTitle.text = it.title
-            mBinding.tvSubTitle.text = it.subTitle
+            mBinding.tvSubTitle.text = it.subtitle
 
             Glide.with(mBinding.ivImage).load(it.image)
                 .placeholder(R.drawable.ic_image)
                 .into(mBinding.ivImage)
+        }
+
+        mBinding.TextView.setOnClickListener {
+            startActivity(Intent(this, ItemListActivity::class.java))
         }
 
     }

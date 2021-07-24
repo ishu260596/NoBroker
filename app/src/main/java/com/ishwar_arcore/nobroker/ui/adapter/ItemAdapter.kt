@@ -9,10 +9,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ishwar_arcore.nobroker.R
-import com.ishwar_arcore.nobroker.data.model.response.ResponseItem
+import com.ishwar_arcore.nobroker.data.local.ItemEntity
 
 class ItemAdapter(
-    private val itemList: List<ResponseItem>,
+    private val itemList: List<ItemEntity>,
     private val listener: ItemClickListener
 ) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
@@ -42,9 +42,9 @@ class ItemAdapter(
          * set data method set the data according to the views
          *
          * **/
-        fun setData(model: ResponseItem) {
+        fun setData(model: ItemEntity) {
             mTvTitle.text = model.title
-            mTvSubTitle.text = model.subTitle
+            mTvSubTitle.text = model.subtitle
             /**Loading image with Glide**/
             Glide.with(mIvImageView).load(model.image)
                 .placeholder(R.drawable.ic_image)

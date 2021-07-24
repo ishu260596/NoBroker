@@ -1,7 +1,7 @@
 package com.ishwar_arcore.nobroker.ui.adapter
 
-import com.ishwar_arcore.nobroker.data.model.response.ResponseItem
+import com.ishwar_arcore.nobroker.data.local.ItemEntity
 
 interface ItemClickListener {
-    fun onItemClick(model: ResponseItem)
+    fun onItemClick(model: ItemEntity)
 }

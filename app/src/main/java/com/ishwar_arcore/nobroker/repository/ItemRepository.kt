@@ -1,19 +1,23 @@
 package com.ishwar_arcore.nobroker.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ishwar_arcore.nobroker.data.model.response.ApiResponse
-import com.ishwar_arcore.nobroker.data.model.response.ResponseItem
+import com.ishwar_arcore.nobroker.data.local.ItemDAO
+import com.ishwar_arcore.nobroker.data.local.ItemEntity
+import com.ishwar_arcore.nobroker.data.model.ResponseItem
 import com.ishwar_arcore.nobroker.data.remote.ApiClient
 import com.ishwar_arcore.nobroker.data.remote.RetrofitClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
-class ItemRepository {
-    private var itemList: MutableLiveData<List<ResponseItem>> = MutableLiveData()
+class ItemRepository(private val itemDAO: ItemDAO) {
 
-    fun getItemList(): MutableLiveData<List<ResponseItem>> {
-        return itemList
+    suspend fun getItemListFromLocal(): List<ItemEntity> {
+        return itemDAO.getItemFromLocal()
     }
 
     /**
@@ -27,9 +31,29 @@ class ItemRepository {
                 call: Call<List<ResponseItem>>,
                 apiResponse: Response<List<ResponseItem>>
             ) {
+
                 if (apiResponse.isSuccessful) {
-                    itemList.postValue(apiResponse.body())
+                    val list: List<ResponseItem>? =
+                        apiResponse.body()
+
+                    for (i in 0 until list?.size!!) {
+                        val responseItem = list[i]
+                        val itemEntity = ItemEntity(
+                            responseItem.title,
+                            responseItem.image,
+                            responseItem.subTitle
+                        )
+                        /**
+                         * saving the item list in roomDatabase
+                         *
+                         * **/
+                        CoroutineScope(Dispatchers.IO).launch {
+                            itemDAO.insertItem(itemEntity)
+                        }
+                    }
+
                 }
+
             }
 
             override fun onFailure(
