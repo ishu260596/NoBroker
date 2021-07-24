@@ -10,3 +10,6 @@ const val NETWORK_CALL = "true"
 
 //List Size
 const val LIST_SIZE = 10
+
+//intents
+const val MODEL="model"

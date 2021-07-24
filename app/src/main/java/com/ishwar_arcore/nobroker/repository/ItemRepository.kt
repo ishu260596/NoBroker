@@ -1,20 +1,19 @@
 package com.ishwar_arcore.nobroker.repository
 
-import android.content.Context
+
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.ishwar_arcore.nobroker.data.local.ItemDAO
 import com.ishwar_arcore.nobroker.data.local.ItemEntity
-import com.ishwar_arcore.nobroker.data.model.ResponseItem
 import com.ishwar_arcore.nobroker.data.remote.ApiClient
 import com.ishwar_arcore.nobroker.data.remote.RetrofitClient
-import com.ishwar_arcore.nobroker.utils.NETWORK_CALL
-import com.ishwar_arcore.nobroker.utils.PreferenceHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Response
+import kotlinx.coroutines.withContext
+import java.net.URL
 
 class ItemRepository(private val itemDAO: ItemDAO) {
 
@@ -35,6 +34,7 @@ class ItemRepository(private val itemDAO: ItemDAO) {
 
         for (i in 0 until result?.size!!) {
             val responseItem = result[i]
+
             val itemEntity = ItemEntity(
                 i + 1,
                 responseItem.title,

@@ -8,6 +8,7 @@ import com.ishwar_arcore.nobroker.R
 import com.ishwar_arcore.nobroker.data.local.ItemEntity
 import com.ishwar_arcore.nobroker.data.model.ResponseItem
 import com.ishwar_arcore.nobroker.databinding.ActivityItemDescriptionBinding
+import com.ishwar_arcore.nobroker.utils.MODEL
 
 class ItemDescriptionActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityItemDescriptionBinding
@@ -22,7 +23,7 @@ class ItemDescriptionActivity : AppCompatActivity() {
 
     private fun initViews() {
         if (intent != null && intent.extras != null) {
-            model = intent.getSerializableExtra("model") as ItemEntity?
+            model = intent.getSerializableExtra(MODEL) as ItemEntity?
         }
         model?.let {
             mBinding.tvTitle.text = it.title
@@ -35,6 +36,7 @@ class ItemDescriptionActivity : AppCompatActivity() {
 
         mBinding.TextView.setOnClickListener {
             startActivity(Intent(this, ItemListActivity::class.java))
+            finish()
         }
 
     }

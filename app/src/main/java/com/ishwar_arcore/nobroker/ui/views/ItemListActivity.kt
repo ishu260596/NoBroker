@@ -19,10 +19,7 @@ import com.ishwar_arcore.nobroker.databinding.ActivityItemListBinding
 import com.ishwar_arcore.nobroker.repository.ItemRepository
 import com.ishwar_arcore.nobroker.ui.adapter.ItemAdapter
 import com.ishwar_arcore.nobroker.ui.adapter.ItemClickListener
-import com.ishwar_arcore.nobroker.utils.LIST_SIZE
-import com.ishwar_arcore.nobroker.utils.MyApplication
-import com.ishwar_arcore.nobroker.utils.NETWORK_CALL
-import com.ishwar_arcore.nobroker.utils.PreferenceHelper
+import com.ishwar_arcore.nobroker.utils.*
 import com.ishwar_arcore.nobroker.viewmodel.ItemViewModel
 import com.ishwar_arcore.nobroker.viewmodel.ViewModelFactory
 
@@ -122,7 +119,7 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener, DroidListener {
 
     override fun onItemClick(model: ItemEntity) {
         val intent = Intent(this, ItemDescriptionActivity::class.java)
-        intent.putExtra("model", model)
+        intent.putExtra(MODEL, model)
         startActivity(intent)
     }
 
