@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.ishwar_arcore.nobroker.utils.Converters
 import com.ishwar_arcore.nobroker.utils.DATABASE_NAME
 
 @Database(
     entities = [ItemEntity::class],
     version = 1
 )
+@TypeConverters(Converters::class)
 abstract class ItemDatabase : RoomDatabase() {
 
     abstract fun getItemDAO(): ItemDAO
@@ -27,7 +29,6 @@ abstract class ItemDatabase : RoomDatabase() {
                 builder.fallbackToDestructiveMigration()
                 INSTANCE = builder.build()
                 return INSTANCE!!
-
             } else {
                 return INSTANCE!!
             }

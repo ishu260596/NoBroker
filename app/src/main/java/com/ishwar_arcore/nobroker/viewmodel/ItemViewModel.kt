@@ -17,9 +17,9 @@ class ItemViewModel(private val itemRepository: ItemRepository) : ViewModel() {
         return itemRepository.getItemListFromLocal()
     }
 
-    fun fetchItemFromServer() {
+    fun fetchItemFromServer(context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
-            itemRepository.fetchListFromServer()
+            itemRepository.fetchListFromServer(context)
         }
     }
 

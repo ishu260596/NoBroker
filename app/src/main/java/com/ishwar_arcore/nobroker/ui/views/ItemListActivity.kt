@@ -1,6 +1,7 @@
 package com.ishwar_arcore.nobroker.ui.views
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -22,6 +23,7 @@ import com.ishwar_arcore.nobroker.ui.adapter.ItemClickListener
 import com.ishwar_arcore.nobroker.utils.*
 import com.ishwar_arcore.nobroker.viewmodel.ItemViewModel
 import com.ishwar_arcore.nobroker.viewmodel.ViewModelFactory
+import java.io.ByteArrayOutputStream
 
 
 class ItemListActivity : AppCompatActivity(), ItemClickListener, DroidListener {
@@ -79,6 +81,7 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener, DroidListener {
         mBinding.shimmerFrameLayout.startShimmerAnimation()
 
         PreferenceHelper.getSharedPreferences(this)
+
         val searchIcon = mBinding.svItemList.findViewById<ImageView>(R.id.search_mag_icon)
         searchIcon.setColorFilter(Color.BLACK)
         val cancelIcon = mBinding.svItemList.findViewById<ImageView>(R.id.search_close_btn)
@@ -118,15 +121,24 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener, DroidListener {
     }
 
     override fun onItemClick(model: ItemEntity) {
+        /**
+         * converting bitmap to the bytearray
+         * **/
+        val stream = ByteArrayOutputStream()
+        model.bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        val byteArray: ByteArray = stream.toByteArray()
+
         val intent = Intent(this, ItemDescriptionActivity::class.java)
-        intent.putExtra(MODEL, model)
+        intent.putExtra(TITLE, model.title)
+        intent.putExtra(SUBTITLE, model.subtitle)
+        intent.putExtra(BITMAP_IMG, byteArray)
         startActivity(intent)
     }
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {
         if (isConnected) {
             if (PreferenceHelper.getBooleanFromPreference(NETWORK_CALL)) {
-                itemViewModel.fetchItemFromServer()
+                itemViewModel.fetchItemFromServer(this)
                 PreferenceHelper.writeBooleanToPreference(NETWORK_CALL, false)
             }
         }

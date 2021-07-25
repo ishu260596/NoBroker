@@ -15,6 +15,7 @@ data class ItemEntity(
     var id: Int?,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "image") var image: String,
+    @ColumnInfo(name = "bitmap") var bitmap: Bitmap,
     @ColumnInfo(name = "subtitle") var subtitle: String,
 ) : Serializable
 

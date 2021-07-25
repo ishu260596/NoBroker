@@ -13,3 +13,6 @@ const val LIST_SIZE = 10
 
 //intents
 const val MODEL="model"
+const val TITLE="model"
+const val SUBTITLE="model"
+const val BITMAP_IMG="bitmap"
