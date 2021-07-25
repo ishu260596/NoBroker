@@ -23,10 +23,6 @@ class ItemRepository(private val itemDAO: ItemDAO) {
         return itemDAO.getItemFromLocal()
     }
 
-    fun getItemBySearch(newText: String?): LiveData<List<ItemEntity>> {
-        return itemDAO.getItemBySearch(newText!!)
-    }
-
     /**
      * Calling the API response and enqueuing the process
      * **/

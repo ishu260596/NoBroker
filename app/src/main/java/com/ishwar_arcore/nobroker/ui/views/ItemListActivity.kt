@@ -54,10 +54,7 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener, DroidListener {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                itemViewModel.getItemBySearch(newText).observe(this@ItemListActivity,
-                    Observer {
-                        resetRecyclerView(it)
-                    })
+                itemAdapter.filter.filter(newText)
                 return false
             }
         })
