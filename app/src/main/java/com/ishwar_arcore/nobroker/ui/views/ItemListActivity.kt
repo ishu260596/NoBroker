@@ -124,7 +124,6 @@ class ItemListActivity : AppCompatActivity(), ItemClickListener, DroidListener {
         val stream = ByteArrayOutputStream()
         model.bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
-
         val intent = Intent(this, ItemDescriptionActivity::class.java)
         intent.putExtra(TITLE, model.title)
         intent.putExtra(SUBTITLE, model.subtitle)

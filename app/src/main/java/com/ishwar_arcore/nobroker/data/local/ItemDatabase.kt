@@ -8,10 +8,7 @@ import androidx.room.TypeConverters
 import com.ishwar_arcore.nobroker.utils.Converters
 import com.ishwar_arcore.nobroker.utils.DATABASE_NAME
 
-@Database(
-    entities = [ItemEntity::class],
-    version = 1
-)
+@Database(entities = [ItemEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class ItemDatabase : RoomDatabase() {
 
@@ -24,8 +21,7 @@ abstract class ItemDatabase : RoomDatabase() {
                 val builder = Room.databaseBuilder(
                     context.applicationContext,
                     ItemDatabase::class.java,
-                    DATABASE_NAME
-                )
+                    DATABASE_NAME)
                 builder.fallbackToDestructiveMigration()
                 INSTANCE = builder.build()
                 return INSTANCE!!

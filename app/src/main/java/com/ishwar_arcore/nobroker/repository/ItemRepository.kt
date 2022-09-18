@@ -38,8 +38,7 @@ class ItemRepository(private val itemDAO: ItemDAO) {
                 responseItem.title,
                 responseItem.image,
                 bitmap,
-                responseItem.subTitle
-            )
+                responseItem.subTitle)
             /**
              * saving the item list in roomDatabase
              *

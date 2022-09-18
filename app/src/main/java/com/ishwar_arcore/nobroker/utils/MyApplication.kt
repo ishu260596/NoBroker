@@ -23,6 +23,6 @@ class MyApplication : Application() {
 
     override fun onLowMemory() {
         super.onLowMemory()
-        DroidNet.getInstance().removeAllInternetConnectivityChangeListeners();
+        DroidNet.getInstance().removeAllInternetConnectivityChangeListeners()
     }
 }

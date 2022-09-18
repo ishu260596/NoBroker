@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ishwar_arcore.nobroker.data.local.ItemEntity
 import com.ishwar_arcore.nobroker.repository.ItemRepository
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +19,7 @@ class ItemViewModel(private val itemRepository: ItemRepository) : ViewModel() {
     }
 
     fun fetchItemFromServer(context: Context) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             itemRepository.fetchListFromServer(context)
         }
     }

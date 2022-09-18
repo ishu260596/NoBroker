@@ -11,8 +11,7 @@ import java.io.Serializable
 data class ItemEntity(
 
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "id")
-    var id: Int?,
+    @ColumnInfo(name = "id") var id: Int?,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "image") var image: String,
     @ColumnInfo(name = "bitmap") var bitmap: Bitmap,
